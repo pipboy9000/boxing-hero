@@ -12,6 +12,7 @@ let level = 1;
 let timer = 30;
 let hp = 100;
 let maxHp = 100;
+let timerInterval;
 
 let state = STATE.Paused;
 
@@ -25,6 +26,9 @@ export function start() {
     timer = 30;
     gameDiv.style.display = 'flex';
     state = STATE.Playing;
+    timerInterval = setInterval(function () {
+
+    })
 }
 
 export function hit(hit) {
