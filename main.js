@@ -13,12 +13,7 @@ function init() {
 }
 
 export function start() {
-    Game.start();
-}
-
-export function gameOver() {
-    Menu.show();
-    Game.start();
+    Game.newGame();
 }
 
 init();

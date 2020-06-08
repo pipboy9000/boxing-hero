@@ -39,10 +39,37 @@ body {
     justify-content: center;
 }
 
+.level {
+    color: white;
+    font-size: 50px;
+}
+
+.msg {
+    color: white;
+    font-size: 60px;
+}
+
 .timer {
     color: white;
     font-size: 60px;
     margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timerSeconds {
+    position: absolute;
+    font-size: 40px;
+}
+
+.timerCircle {
+    fill: none;
+    stroke-width: 7;
+    stroke-linecap: round;
+    stroke-dasharray: 100 100;
+    stroke-dashoffset: 0;
+    stroke: white;
 }
 
 .hp {
@@ -58,4 +85,17 @@ body {
     background: #2bff2b;
     width: 100%;
     transition: width 0.5s ease-out;
+}
+
+.restartBtn{
+    margin-top: 20px;
+    width: 200px;
+    height: 60px;
+    font-size: 25px;
+    border-radius: 50px;
+    border: 5px solid white;
+    background: transparent;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    transition: opacity 0.5s ease-out;
 }

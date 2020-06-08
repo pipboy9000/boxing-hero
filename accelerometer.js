@@ -1,6 +1,6 @@
 import * as Game from './game.js';
 
-let minHit = 10;
+let minHit = 5;
 let wait = 0;
 
 function handleMotionEvent(event) {
