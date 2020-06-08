@@ -32,10 +32,10 @@ function init() {
     msg = gameDiv.getElementsByClassName('msg')[0];
     levelDiv = gameDiv.getElementsByClassName('level')[0];
 
-    hitBtn = document.getElementById('hitBtn');
-    hitBtn.onclick = function () {
-        hit(10);
-    }
+    // hitBtn = document.getElementById('hitBtn');
+    // hitBtn.onclick = function () {
+    //     hit(10);
+    // }
 
     restartBtn = document.getElementsByClassName('restartBtn')[0];
     restartBtn.onclick = newGame;
