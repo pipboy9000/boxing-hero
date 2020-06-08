@@ -40,6 +40,7 @@ body {
 }
 
 .level {
+    margin-top: 20px;
     color: white;
     font-size: 50px;
 }
@@ -52,7 +53,7 @@ body {
 .timer {
     color: white;
     font-size: 60px;
-    margin-bottom: 60px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,7 +89,8 @@ body {
 }
 
 .restartBtn{
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 200px;
     height: 60px;
     font-size: 25px;

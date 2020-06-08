@@ -4,7 +4,7 @@ let menuDiv = document.getElementById('menu');
 let startBtn = document.getElementById('startBtn');
 let calibrateBtn = document.getElementById('calibrateBtn');
 
-function init() {
+async function init() {
     let menuDiv = document.getElementById('menu');
     let startBtn = document.getElementById('startBtn');
     let calibrateBtn = document.getElementById('calibrateBtn');

@@ -67,10 +67,11 @@ function setTimer(seconds, callback) {
     }, 50)
 }
 
-export function newGame() {
+export async function newGame() {
     level = 0;
     setTimer(3, nextLevel);
     gameDiv.style.display = 'flex';
+    let fullScreen = await gameDiv.requestFullscreen();
     state = STATE.Paused;
     maxHp = 100;
     hp = 100;
