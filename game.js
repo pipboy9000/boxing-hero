@@ -89,7 +89,7 @@ function nextLevel() {
     hp = maxHp;
     state = STATE.Playing;
     setMsg('GO!!!');
-    setTimer(10, gameOver);
+    setTimer(30, gameOver);
 }
 
 function getReady() {
