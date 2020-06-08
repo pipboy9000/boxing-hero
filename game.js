@@ -76,6 +76,7 @@ export function newGame() {
     hp = 100;
     hpBar.style.width = "100%";
     restartBtn.style.opacity = "0";
+    setMsg("Get Ready");
 }
 
 function setMsg(str) {
