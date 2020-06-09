@@ -1,0 +1,10 @@
+{
+    "short_name": "Boxing Hero",
+    "name": "Boxing Hero",
+    "lang": "en",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "dir": "ltr",
+    "display": "fullscreen",
+    "orientation": "landscape"
+}
