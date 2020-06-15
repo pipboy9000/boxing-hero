@@ -74,18 +74,23 @@ body {
 }
 
 .hp {
-    width: 80%;;
+    width: 90%;;
     height: 50px;
-    background: grey;
-    border-radius: 50px;
     overflow: hidden;
+    border-image-slice:60 150 40 120 fill;
+    border-image-width:20px 50px 20px 50px;
+    border-image-outset:0px 0px 0px 0px;
+    border-image-repeat:repeat stretch;
+    border-image-source:url('./static/hp_bar.png');
+    transition: width 0.5s;
 }
 
-.fill {
-    height: 100%;
-    background: #2bff2b;
+.hpColor {
+    background-color: #62ff00;
     width: 100%;
-    transition: width 0.5s ease-out;
+    height: 100%;
+    mix-blend-mode: multiply;
+    transition: background-color .5s;
 }
 
 .restartBtn{
@@ -101,4 +106,12 @@ body {
     font-family: 'Rubik', sans-serif;
     transition: opacity 0.5s ease-out;
     outline: none;
+}
+
+.flash{
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(#ffffffeb, #ffffff00);
+    position: absolute;
+    opacity: 0;
 }

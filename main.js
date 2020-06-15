@@ -1,19 +1,34 @@
-import * as Game from './game.js';
-
-let menuDiv = document.getElementById('menu');
-let startBtn = document.getElementById('startBtn');
-let calibrateBtn = document.getElementById('calibrateBtn');
+import Game from './game.js';
+import Calibrate from './calibrate.js';
+import Menu from './menu.js';
 
 async function init() {
-    let menuDiv = document.getElementById('menu');
-    let startBtn = document.getElementById('startBtn');
-    let calibrateBtn = document.getElementById('calibrateBtn');
+    window.addEventListener('hashchange', function () {
+        switch (this.location.hash) {
+            case '#menu':
+                Game.gameOver();
+                Menu.show();
+                Game.hide();
+                Calibrate.hide();
+                break;
 
-    startBtn.onclick = start;
-}
+            case '#game':
+                Game.show();
+                Game.newGame();
+                Menu.hide();
+                Calibrate.hide();
+                break;
 
-export function start() {
-    Game.newGame();
+            case '#calibrate':
+                Calibrate.show();
+                Game.gameOver();
+                Game.hide();
+                Menu.hide();
+        }
+    }, false);
+
+    location.hash = 'menu';
+
 }
 
 init();
