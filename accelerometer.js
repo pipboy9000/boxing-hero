@@ -1,4 +1,4 @@
-import * as Game from './game.js';
+import Game from './game.js';
 
 let minHit = 5;
 let wait = 0;

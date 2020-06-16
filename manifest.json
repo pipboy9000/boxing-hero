@@ -2,7 +2,7 @@
     "short_name": "Boxing Hero",
     "name": "Boxing Hero",
     "lang": "en",
-    "start_url": "./",
+    "start_url": "./#menu",
     "background_color": "#000000",
     "theme_color": "#000000",
     "dir": "ltr",

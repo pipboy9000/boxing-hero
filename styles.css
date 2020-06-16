@@ -1,11 +1,14 @@
 body {
-    background: black;
+    background: url('static/leather.jpg');
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     flex-direction: column;
     font-family: 'Rubik', sans-serif;
     margin: 0;
     padding: 0;
+    white-space: nowrap;
 }
 
 .menu{
@@ -13,18 +16,32 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
 }
 
-.menu > h1 {
-    color: white;
+.logo {
+    background-image: url('static/logo.png');
+    width: 100%;
+    height: 50%;
+    max-width: 860px;
+    background-size: 95%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .menu > button {
     width: 90%;
     max-width: 300px;
-    height: 40px;
-    margin: 10px;
+    height: 60px;
     font-family: 'Rubik', sans-serif;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3em;
+    text-shadow: 0px 8px 2px #0000008a;
+    margin-top: 10px;
 }
 
 .game{
@@ -35,25 +52,35 @@ body {
     height: 100%;
     flex-direction: column;
     align-items: center;
-    background: black;
     justify-content: center;
 }
 
+.game > .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
 .level {
-    margin-top: 20px;
+    margin-bottom: 20px;
     color: white;
-    font-size: 50px;
+    font-size: 30px;
+    text-shadow: 0 5px 3px black;
 }
 
 .msg {
     color: white;
     font-size: 60px;
+    text-align: center;
+    text-shadow: 0 5px 3px black;
 }
 
 .timer {
     color: white;
     font-size: 60px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,18 +98,16 @@ body {
     stroke-dasharray: 100 100;
     stroke-dashoffset: 0;
     stroke: white;
+    transition: opacity 0.5s;
 }
 
 .hp {
     width: 90%;;
     height: 50px;
-    overflow: hidden;
-    border-image-slice:60 150 40 120 fill;
-    border-image-width:20px 50px 20px 50px;
-    border-image-outset:0px 0px 0px 0px;
-    border-image-repeat:repeat stretch;
-    border-image-source:url('./static/hp_bar.png');
+    background: linear-gradient(to bottom,  #f4f4f4 0%,#eaeaea 47%,#dbdbdb 48%,#f9f9f9 100%);
+    box-shadow: 0 10px 20px #0000009c, 3px 3px 2px #00000063 inset, -3px -4px 2px #909090 inset;
     transition: width 0.5s;
+    border-radius: 7px;
 }
 
 .hpColor {
@@ -90,11 +115,12 @@ body {
     width: 100%;
     height: 100%;
     mix-blend-mode: multiply;
-    transition: background-color .5s;
+    transition: background-color .3s ease-out;
+    border-radius: 7px;
 }
 
 .restartBtn{
-    margin-top: 10px;
+    margin-top: 60px;
     margin-bottom: 10px;
     width: 200px;
     height: 60px;
@@ -114,4 +140,5 @@ body {
     background: radial-gradient(#ffffffeb, #ffffff00);
     position: absolute;
     opacity: 0;
+    pointer-events: none;
 }

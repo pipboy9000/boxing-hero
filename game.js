@@ -40,12 +40,13 @@ function init() {
 }
 
 function setTimer(seconds, callback) {
+    timerCircle.style.opacity = 1;
     timerSeconds.innerText = seconds;
     timer = seconds;
     onTimerEnd = callback;
     onTimerEnd = callback;
     timerCircle.style.strokeDashoffset = "0";
-    timerCircle.style.transition = ""
+    timerCircle.style.transition = "";
     clearInterval(timerInterval);
     timerInterval = setInterval(() => {
         timer--;
@@ -53,20 +54,22 @@ function setTimer(seconds, callback) {
             timerSeconds.innerText = timer.toString();
         } else {
             timerSeconds.innerText = timer.toString();
+            timerCircle.style.opacity = 0;
             clearInterval(timerInterval);
             onTimerEnd();
         }
     }, 1000)
 
     setTimeout(() => {
-        timerCircle.style.transition = "stroke-dashoffset " + seconds + "s linear";
+        timerCircle.style.transition = "stroke-dashoffset " + seconds + "s linear, opacity 0.5s linear";
         timerCircle.style.strokeDashoffset = "100";
+        timerCircle.style.opacity = 1;
     }, 50)
 }
 
 async function newGame() {
     level = 0;
-    setTimer(3, nextLevel);
+    setTimer(1, nextLevel);
     gameDiv.style.display = 'flex';
     state = STATE.GetReady;
     maxHp = 100;
@@ -90,7 +93,7 @@ function nextLevel() {
     hpBar.style.width = "90%";
     hpColor.style.backgroundColor = "#62ff00";
     setMsg('GO!!!');
-    setTimer(30, gameOver);
+    setTimer(300, gameOver);
 }
 
 function getReady() {
@@ -110,12 +113,13 @@ function gameOver() {
 }
 
 function flash(strength) {
-    flashDiv.style.opacity = strength * 5;
+    let normalized = strength / 20;
+    flashDiv.style.opacity = normalized;
     flashDiv.style.transition = "";
     setTimeout(() => {
-        flashDiv.style.opacity = "0";
-        flashDiv.style.transition = "opacity 0.3s easein";
-    }, 30)
+        flashDiv.style.transition = "opacity 0.2s linear";
+        flashDiv.style.opacity = 0;
+    }, 5);
 }
 
 function hit(hit) {
@@ -125,7 +129,7 @@ function hit(hit) {
         if (hp < 0) hp = 0;
         let hpNormalized = hp / maxHp;
         hpBar.style.width = hpNormalized * 100 + "%";
-        hpColor.style.backgroundColor = `hsl(${hpNormalized * 120}, 100%, 60%)`;
+        hpColor.style.backgroundColor = `hsl(${Math.floor(hpNormalized * 120)},100%,60%)`;
         if (hp == 0) {
             getReady();
         }

@@ -6,33 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="manifest.json">
     <title>Boxing Hero</title>
     <script src="main.js" type="module"></script>
 </head>
 
 <body>
     <div id="menu" class="menu">
-        <h1>
-            BOXING-HERO
-        </h1>
-        <button id="startBtn">START</button>
-        <button id="calibrateBtn">CALIBRATE</button>
+        <div class="logo"></div>
+        <button id="startBtn">New Game</button>
+        <button id="calibrateBtn">Calibrate</button>
     </div>
     <div id="game" class="game">
-        <div class="flash"></div>
-        <div class="level">Level 1</div>
-        <div class="msg">Get Ready!</div>
-        <div class="timer">
-            <div class="timerSeconds"></div>
-            <svg class="red" width="100" height="100">
-                <circle class="timerCircle" cx="50" cy="50" r="40" pathlength="100" />
-            </svg>
+        <div class="container">
+            <div class="flash"></div>
+            <div class="level">Level 1</div>
+            <div class="msg">Get Ready!</div>
+            <div class="timer">
+                <div class="timerSeconds"></div>
+                <svg class="red" width="100" height="100">
+                    <circle class="timerCircle" cx="50" cy="50" r="40" pathlength="100" />
+                </svg>
+            </div>
+            <div class="hp">
+                <div class="hpColor"></div>
+            </div>
+            <button class="restartBtn">Restart</button>
         </div>
-        <div class="hp">
-            <div class="hpColor"></div>
-        </div>
-        <button class="restartBtn">Restart</button>
     </div>
 </body>
 
