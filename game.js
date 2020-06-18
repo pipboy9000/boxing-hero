@@ -78,6 +78,7 @@ async function newGame() {
     hpBar.style.width = "90%";
     hpColor.style.backgroundColor = "#62ff00";
     restartBtn.style.opacity = "0";
+    restartBtn.onclick = '';
     setMsg("Get Ready!!");
 }
 
@@ -111,6 +112,8 @@ function gameOver() {
     setMsg('Game Over');
     state = STATE.GameOver;
     restartBtn.style.opacity = "1";
+    restartBtn.onclick = newGame;
+
 }
 
 function flash(strength) {
