@@ -11,6 +11,10 @@ body {
     white-space: nowrap;
 }
 
+button {
+    outline: none;
+}
+
 .menu{
     position: absolute;
     display: flex;

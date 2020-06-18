@@ -1,4 +1,5 @@
 import * as accel from './accelerometer.js';
+import Effects from './effects.js';
 
 const STATE = {
     GetReady: 0,
@@ -69,7 +70,7 @@ function setTimer(seconds, callback) {
 
 async function newGame() {
     level = 0;
-    setTimer(1, nextLevel);
+    setTimer(3, nextLevel);
     gameDiv.style.display = 'flex';
     state = STATE.GetReady;
     maxHp = 100;
@@ -85,7 +86,6 @@ function setMsg(str) {
 };
 
 function nextLevel() {
-    level++;
     state = STATE.Playing;
     levelDiv.innerText = "Level " + level
     maxHp = 100 + level * 35;
@@ -93,13 +93,14 @@ function nextLevel() {
     hpBar.style.width = "90%";
     hpColor.style.backgroundColor = "#62ff00";
     setMsg('GO!!!');
-    setTimer(300, gameOver);
+    setTimer(20 + level * 3, gameOver);
+    level++;
 }
 
 function getReady() {
     state = STATE.GetReady;
     setMsg("Get Ready");
-    let rest = 10;
+    let rest = 5 + level * 3;
     setTimer(rest, nextLevel);
     hpBar.style.width = "90%";
     hpColor.style.backgroundColor = "#62ff00";
