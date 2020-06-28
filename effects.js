@@ -95,10 +95,8 @@ function test() {
 
 function init() {
     canvas = document.getElementsByClassName("effects")[0];
-    canvas = document.getElementsByClassName("flash")[0];
     canvas.addEventListener('click', test, false);
     ctx = canvas.getContext("2d");
-    ctx.fillStyle = "red";
     canvas.width = width;
     canvas.height = height;
 
