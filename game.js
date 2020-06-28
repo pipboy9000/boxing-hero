@@ -1,5 +1,5 @@
-import * as accel from './accelerometer.js';
 import Effects from './effects.js';
+import Calibrate from './calibrate.js';
 
 const STATE = {
     GetReady: 0,
@@ -8,17 +8,20 @@ const STATE = {
 }
 
 let gameDiv;
-let flashDiv;
 let hpBar;
 let hpColor;
+let timerDiv;
 let timerCircle;
 let timerSeconds;
 let msg;
 
 let level = 1;
 let timer = 30;
-let hp = 100;
-let maxHp = 100;
+let hp = 45;
+let maxHp = 45;
+let hitWait = 0;
+let minHit = 5;
+let hitTarget;
 let timerInterval;
 let levelDiv;
 let restartBtn;
@@ -33,10 +36,10 @@ function init() {
     hpColor = gameDiv.getElementsByClassName('hpColor')[0];
     timerCircle = gameDiv.getElementsByClassName('timerCircle')[0];
     timerSeconds = gameDiv.getElementsByClassName('timerSeconds')[0];
+    timerDiv = gameDiv.getElementsByClassName('timer')[0];
     msg = gameDiv.getElementsByClassName('msg')[0];
     levelDiv = gameDiv.getElementsByClassName('level')[0];
     restartBtn = document.getElementsByClassName('restartBtn')[0];
-    flashDiv = document.getElementsByClassName('flash')[0];
     restartBtn.onclick = newGame;
 }
 
@@ -69,17 +72,21 @@ function setTimer(seconds, callback) {
 }
 
 async function newGame() {
+    hitTarget = Calibrate.getHitTarget();
     level = 0;
     setTimer(3, nextLevel);
     gameDiv.style.display = 'flex';
+    timerDiv.style.opacity = "1";
     state = STATE.GetReady;
-    maxHp = 100;
-    hp = 100;
-    hpBar.style.width = "90%";
+    maxHp = 45;
+    hp = 45;
+    hpBar.style.width = "100%";
     hpColor.style.backgroundColor = "#62ff00";
     restartBtn.style.opacity = "0";
     restartBtn.onclick = '';
     setMsg("Get Ready!!");
+
+    window.addEventListener("devicemotion", hit, true);
 }
 
 function setMsg(str) {
@@ -89,12 +96,12 @@ function setMsg(str) {
 function nextLevel() {
     state = STATE.Playing;
     levelDiv.innerText = "Level " + level
-    maxHp = 100 + level * 35;
+    maxHp = 45 + level * 5;
     hp = maxHp;
-    hpBar.style.width = "90%";
+    hpBar.style.width = "100%";
     hpColor.style.backgroundColor = "#62ff00";
     setMsg('GO!!!');
-    setTimer(20 + level * 3, gameOver);
+    setTimer(30 + level * 3, gameOver);
     level++;
 }
 
@@ -103,7 +110,7 @@ function getReady() {
     setMsg("Get Ready");
     let rest = 5 + level * 3;
     setTimer(rest, nextLevel);
-    hpBar.style.width = "90%";
+    hpBar.style.width = "100%";
     hpColor.style.backgroundColor = "#62ff00";
 
 }
@@ -112,28 +119,47 @@ function gameOver() {
     setMsg('Game Over');
     state = STATE.GameOver;
     restartBtn.style.opacity = "1";
+    timerDiv.style.opacity = "0";
     restartBtn.onclick = newGame;
-
+    window.removeEventListener("devicemotion", hit, true);
 }
 
-function flash(strength) {
-    let normalized = strength / 20;
-    flashDiv.style.opacity = normalized;
-    flashDiv.style.transition = "";
-    setTimeout(() => {
-        flashDiv.style.transition = "opacity 0.2s linear";
-        flashDiv.style.opacity = 0;
-    }, 5);
-}
+function hit(event) {
 
-function hit(hit) {
+    if (hitWait > 0) {
+        hitWait--;
+        return;
+    }
+
+    let x = event.acceleration.x;
+    let y = event.acceleration.y;
+    let z = event.acceleration.z;
+
+    let hit = Math.sqrt(x * x + y * y + z * z); //movement vector length 
+
+    console.log(hit, hitWait)
+
+
     if (state == STATE.Playing) {
-        flash(hit);
+
+        hitWait = 15;
+
+
+        if (hit < minHit) return;
+
+        hit /= hitTarget; //calibrate
+
         hp -= hit;
+
         if (hp < 0) hp = 0;
+
         let hpNormalized = hp / maxHp;
         hpBar.style.width = hpNormalized * 100 + "%";
         hpColor.style.backgroundColor = `hsl(${Math.floor(hpNormalized * 120)},100%,60%)`;
+
+        Effects.spawnParticles(5, x, y);
+        Effects.flash(0.2);
+
         if (hp == 0) {
             getReady();
         }

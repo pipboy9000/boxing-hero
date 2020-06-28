@@ -1,5 +1,5 @@
 body {
-    background: url('static/leather.jpg');
+    background: url('../img/leather.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -9,6 +9,10 @@ body {
     margin: 0;
     padding: 0;
     white-space: nowrap;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
 }
 
 button {
@@ -26,11 +30,11 @@ button {
 }
 
 .logo {
-    background-image: url('static/logo.png');
+    background-image: url('../img/logo.png');
     width: 100%;
-    height: 50%;
+    height: 40%;
     max-width: 860px;
-    background-size: 95%;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -43,9 +47,9 @@ button {
     background: none;
     border: none;
     color: white;
-    font-size: 3em;
+    font-size: 2.2em;
     text-shadow: 0px 8px 2px #0000008a;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .game{
@@ -68,7 +72,6 @@ button {
 }
 
 .level {
-    margin-bottom: 20px;
     color: white;
     font-size: 30px;
     text-shadow: 0 5px 3px black;
@@ -82,12 +85,13 @@ button {
 }
 
 .timer {
+    position: absolute;
     color: white;
-    font-size: 60px;
-    margin-bottom: 50px;
+    font-size: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: -9999;
 }
 
 .timerSeconds {
@@ -106,7 +110,7 @@ button {
 }
 
 .hp {
-    width: 90%;;
+    width: 100%;;
     height: 50px;
     background: linear-gradient(to bottom,  #f4f4f4 0%,#eaeaea 47%,#dbdbdb 48%,#f9f9f9 100%);
     box-shadow: 0 10px 20px #0000009c, 3px 3px 2px #00000063 inset, -3px -4px 2px #909090 inset;
@@ -124,8 +128,7 @@ button {
 }
 
 .restartBtn{
-    margin-top: 60px;
-    margin-bottom: 10px;
+    position: absolute;
     width: 200px;
     height: 60px;
     font-size: 25px;
@@ -138,11 +141,84 @@ button {
     outline: none;
 }
 
-.flash{
+.effects{
     width: 100%;
     height: 100%;
-    background: radial-gradient(#ffffffeb, #ffffff00);
     position: absolute;
-    opacity: 0;
     pointer-events: none;
+}
+
+.middle{
+    height: 130px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.calibrate {
+    display: none;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hit{
+    width: 60vh;
+    height: 60vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hit > .whiteBg {
+    width: 95%;
+    height: 95%;
+    background: white;
+    opacity: 0;
+    border-radius: 1000px;
+}
+
+.calibrate > input {
+    width: 40vh;
+    margin-top: 50px;
+}
+
+.hitRing{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 600px;
+    /* box-sizing: border-box; */
+    background-image: url('../img/glove.png');
+    background-size: cover;
+}
+
+.hitCircle{
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    transform: scale(0,0);
+    position: absolute;
+    background: white;
+    border-radius: 300px;
+    transition: transform 0.1s ease-out;
+}
+
+.slider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 40px;
+    margin-top: 40px;
+}
+
+.slider > input {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 60%;
 }
