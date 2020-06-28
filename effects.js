@@ -65,7 +65,7 @@ function drawParticles() {
             ctx.beginPath();
             let life = p.age / PARTICLE_MAX_AGE;
             ctx.fillStyle = `rgb(255, 255, 255)`;
-            ctx.arc(p.x, p.y, 3 - life * 5, 0, Math.PI * 2);
+            ctx.arc(p.x, p.y, 3 - life * 3, 0, Math.PI * 2);
             ctx.fill();
         }
     })
