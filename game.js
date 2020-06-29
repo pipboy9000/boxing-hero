@@ -7,6 +7,11 @@ const STATE = {
     GameOver: 2
 }
 
+const GAME_TYPE = {
+    normal: 0,
+    freestyle: 1
+}
+
 let gameDiv;
 let hpBar;
 let hpColor;
@@ -71,7 +76,7 @@ function setTimer(seconds, callback) {
     }, 50)
 }
 
-async function newGame() {
+function newGame() {
     hitTarget = Calibrate.getHitTarget();
     level = 0;
     setTimer(3, nextLevel);
@@ -87,6 +92,28 @@ async function newGame() {
     setMsg("Get Ready!!");
 
     window.addEventListener("devicemotion", hit, true);
+}
+
+function newGameFreestyle() {
+    hitTarget = Calibrate.getHitTarget();
+    level = 0;
+    setTimer(3, startFreestyle);
+    gameDiv.style.display = 'flex';
+    timerDiv.style.opacity = "1";
+    state = STATE.GetReady;
+    maxHp = 45;
+    hp = 45;
+    hpBar.style.width = "100%";
+    hpColor.style.backgroundColor = "#62ff00";
+    restartBtn.style.opacity = "0";
+    restartBtn.onclick = '';
+    setMsg("Get Ready!!");
+
+    window.addEventListener("devicemotion", hit, true);
+}
+
+function startFreestyle() {
+
 }
 
 function setMsg(str) {
@@ -182,6 +209,7 @@ export default {
     hit,
     gameOver,
     newGame,
+    newGameFreestyle,
     hide,
     show
 }

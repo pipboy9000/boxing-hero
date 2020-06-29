@@ -9,15 +9,21 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,900&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,900&display=swap" rel="stylesheet"> -->
     <title>Boxing Hero</title>
 </head>
 
 <body>
     <div id="menu" class="menu">
         <div class="logo"></div>
-        <button id="startBtn">New Game</button>
-        <button id="calibrateBtn">Calibrate</button>
+        <hr>
+        <div class="items">
+            <button id="startBtn">New Game</button>
+            <button id="freestyleBtn">Free Style</button>
+            <button id="calibrateBtn">Calibrate</button>
+            <button id="optionsBtn">Options</button>
+        </div>
+        <hr>
     </div>
     <div id="game" class="game">
         <div class="container">
@@ -33,16 +39,19 @@
                     </svg>
                 </div>
             </div>
-            <div class="hp">
-                <div class="hpColor"></div>
+            <div class="hpContainer">
+                <div class="hp">
+                    <div class="hpColor"></div>
+                </div>
             </div>
         </div>
     </div>
     <div class="calibrate">
         <div class="hit">
-            <div class="whiteBg"></div>
-            <div class="hitCircle"></div>
-            <div class="hitRing"></div>
+            <div class="hitRing">
+                <div class="hitCircle"></div>
+                <img src="img/glove.png" alt="Hit Me!">
+            </div>
         </div>
         <div class="slider">
             -

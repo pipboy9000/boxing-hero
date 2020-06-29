@@ -32,6 +32,14 @@ async function init() {
                 lockScreen();
                 break;
 
+            case '#freestyle':
+                Game.show();
+                Game.newGameFreestyle();
+                Menu.hide();
+                Calibrate.hide();
+                lockScreen();
+                break;
+
             case '#calibrate':
                 Calibrate.show();
                 Game.gameOver();

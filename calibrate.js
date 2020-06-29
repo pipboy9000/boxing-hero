@@ -1,12 +1,32 @@
 let calibrateDiv = document.getElementsByClassName('calibrate')[0];
-let hitRing = calibrateDiv.getElementsByClassName('hitRing')[0];
+let hitRing = calibrateDiv.querySelector('.hitRing > img');
 let hitCircle = calibrateDiv.getElementsByClassName('hitCircle')[0];
 let slider = calibrateDiv.getElementsByTagName('input')[0];
-let whiteBg = calibrateDiv.getElementsByClassName('whiteBg')[0];
 
-slider.oninput = e => hitTarget = 31 - +e.target.value;
+slider.oninput = e => {
+    hitTarget = 31 - +e.target.value
+    localStorage.setItem('hitTarget', hitTarget);
+};
 
-let hitTarget = 10;
+//for testing
+// calibrateDiv.onclick = e => {
+//     let event = {
+//         acceleration: {
+//             x: 10,
+//             y: 0,
+//             z: 0,
+//         }
+//     }
+
+//     hit(event);
+//     hitWait = 0;
+//     setTimeout(() => {
+//         greenWait = 0;
+//     }, 500)
+// }
+
+let hitTarget = parseInt(localStorage.getItem('hitTarget') || 10);
+slider.value = 31 - hitTarget;
 let hitLevel = 0;
 let active = false;
 let hitWait = 0; //frames to wait before registering another hit
@@ -27,11 +47,6 @@ function hide() {
 
 function hit(event) {
 
-    if (hitWait > 0) {
-        hitWait--;
-        return;
-    }
-
     let x = event.acceleration.x;
     let y = event.acceleration.y;
     let z = event.acceleration.z;
@@ -46,7 +61,6 @@ function hit(event) {
         console.log(n);
         if (n > 0.9 && n < 1.1) {
             greenWait = 30;
-            whiteBg.style.opacity = 1;
         }
     }
 
@@ -66,12 +80,15 @@ function render() {
 
     if (greenWait > 0) {
         hitRing.style.border = "5px solid #1dff4f";
-        whiteBg.style.opacity = greenWait / 28;
     } else {
         hitRing.style.border = "";
     }
 
     hitLevel *= 0.875;
+
+    if (hitWait > 0) {
+        hitWait--;
+    }
 
     if (active) {
         requestAnimationFrame(render);
